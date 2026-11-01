@@ -13,7 +13,7 @@ Side effects:
 
 ## Install
 
-1. Subscribe to [ZombieBuddy](https://github.com/zed-0xff/ZombieBuddy) and this mod, and enable both in the mod list.
+1. Subscribe to [ZombieBuddy](https://github.com/zed-0xff/ZombieBuddy) and [this mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3832023168), and enable both in the mod list.
 2. Steam → Project Zomboid → Properties → Launch options: `-agentlib:zbNative --` (ZombieBuddy's Java loader; without it the mod does not load).
 3. On the first start ZombieBuddy asks once to approve `CarryWeightMultiplier.jar`.
 4. Check `Zomboid/console.txt` for `[CarryWeightMultiplier] loaded`.

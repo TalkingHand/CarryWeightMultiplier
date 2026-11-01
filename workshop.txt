@@ -1,4 +1,5 @@
 version=1
+id=3832023168
 title=Carry Weight Multiplier
 description=[h1]Carry Weight Multiplier[/h1]
 description=Carry more without changing how heavy anything really is. This mod multiplies the weight items count for in carry and capacity checks, and leaves their real weight alone. By default everything counts for a tenth, so characters, bags, vehicles and the floor hold ten times as much.
