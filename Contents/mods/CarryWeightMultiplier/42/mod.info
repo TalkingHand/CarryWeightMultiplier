@@ -1,0 +1,11 @@
+name=Carry Weight Multiplier
+id=CarryWeightMultiplier
+poster=poster.png
+description=Multiplies the weight items count for in carry and capacity checks (sandbox option, a tenth by default), so characters, bags and vehicles hold more. Stamina, action times, fish and fuel stay vanilla. Requires ZombieBuddy.
+author=TalkingHand
+url=https://github.com/TalkingHand/CarryWeightMultiplier
+modversion=1.0.0
+versionMin=42.21
+require=\ZombieBuddy
+javaJarFile=media/java/CarryWeightMultiplier.jar
+javaPkgName=talkinghand.carryweightmultiplier

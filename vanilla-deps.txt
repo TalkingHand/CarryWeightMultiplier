@@ -1,0 +1,27 @@
+# CarryWeightMultiplier: vanilla dependencies (format: _guide/README.md "9. 게임 업데이트 대응")
+# checked: 42.21.0 (pzt run 2026-11-02, 69 PASS)
+#
+# Java: java/src/main/java/talkinghand/carryweightmultiplier (Patches.java, Load.java).
+#
+# Riskiest (break silently):
+#  1. Bag contents reach getUnequippedWeight through getContentsWeight; if that changes, bags shrink twice or not at all
+#  2. Capacity checks must keep using these three getters; one moved to getActualWeight would count the full weight
+#
+# kind	target	note
+
+java-patch	zombie.inventory.InventoryItem.getUnequippedWeight()	= getActualWeight + getContentsWeight; not overridden
+java-patch	zombie.inventory.InventoryItem.getEquippedWeight()	(actual + contents) * equippedOrWornEncumbranceMultiplier
+java-patch	zombie.inventory.types.InventoryContainer.getEquippedWeight()	override: actual * multiplier + contents * (1 - WeightReduction / 100)
+java-patch	zombie.inventory.InventoryItem.getHotbarEquippedWeight()	(actual + contents) * a factor from the item's tags
+lua-wrap	ISMoveableSpriteProps.canPickUpMoveableInternal, getInfoPanelFlagsPerTile, getInfoPanelFlagsGeneral	shared/Moveables/ISMoveableSpriteProps.lua:1207, 968, 877. Must read self.weight only for hasRoomFor and the shown weight; a stand-in self carries a tenth
+lua-wrap	ISWorldObjectContextMenu.addRemoveCurtainOption	client/ISUI/ISWorldObjectContextMenu.lua:2228. Assumes the too-heavy text is the last thing on the tooltip
+lua-event	OnFillWorldObjectContextMenu, ContextMenu_RemoveLightbulb option	client/ISUI/ISWorldObjectContextMenu.lua:1283. Finds the option by its text; param3 is the light switch (addGetUpOption order)
+java-call	SandboxOptions.instance.getOptionByName, DoubleSandboxOption.getValue	Load.multiplier; falls back to 0.1 if the option is missing
+assume	SandboxVars.CarryWeightMultiplier.Multiplier matches the Java option	CarryWeightMultiplier_Moveables.lua reads the Lua side
+java-call	InventoryContainer.getInventory(), getWeightReduction(); ItemContainer.getContentsWeight(); InventoryItem.getActualWeight(), getContentsWeight()	Load.java
+assume	ItemContainer.getContentsWeight sums getUnequippedWeight	Load.children treats it as already a tenth
+assume	Capacity and carry checks read the patched getters	ItemContainer.hasRoomFor, TransactionManager, ISInventoryTransferAction, IsoGameCharacter.getInventoryWeight, IsoGridSquare.getTotalWeightOfItemsOnFloor
+assume	Stamina, action time, fuel, forage, fish, compost read getWeight or getActualWeight, not the patched getters	CombatManager, ISChopTreeAction, Transaction, ISCampingMenu, forageSystem, Fish.lua, IsoCompost
+assume	Strength XP needs a load over half of getMaxWeight, read through the patched total	server/XpSystem/XpUpdate.lua:33. It comes less often
+assume	hasRoomFor(character, float) takes the number as given; other callers pass already scaled weights, so it stays unpatched	zombie.inventory.ItemContainer, ISInventoryPane:1439, ISInventoryPaneContextMenu:2956
+assume	javaTransferItems compares the full getActualWeight with capacity and has no caller	client/TimedActions/ISInventoryTransferAction.lua:889

@@ -1,0 +1,5 @@
+{
+    "Sandbox_CarryWeightMultiplier": "Carry Weight Multiplier",
+    "Sandbox_CarryWeightMultiplier_Multiplier": "적재 무게 배율",
+    "Sandbox_CarryWeightMultiplier_Multiplier_tooltip": "적재량과 용량 계산에 쓰는 무게에 곱하는 값입니다. 0.1이면 10분의 1, 0이면 0, 1이면 바닐라와 같습니다. 아이템의 실제 무게는 바뀌지 않습니다."
+}

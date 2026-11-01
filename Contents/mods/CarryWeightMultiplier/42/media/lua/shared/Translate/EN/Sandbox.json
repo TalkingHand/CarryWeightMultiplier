@@ -1,0 +1,5 @@
+{
+    "Sandbox_CarryWeightMultiplier": "Carry Weight Multiplier",
+    "Sandbox_CarryWeightMultiplier_Multiplier": "Carried weight multiplier",
+    "Sandbox_CarryWeightMultiplier_Multiplier_tooltip": "Multiplies the weight items count for in carry and capacity checks. 0.1 counts a tenth, 0 counts nothing, 1 is vanilla. Item weights themselves do not change."
+}
