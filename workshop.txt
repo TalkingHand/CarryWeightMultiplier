@@ -43,5 +43,7 @@ description=무기 스태미나, 행동 시간, 땔감 시간, 채집, 생선은
 description=필요한 것: [b]ZombieBuddy[/b] 모드, 스팀 실행 옵션 [b]-agentlib:zbNative --[/b] (속성 → 실행 옵션). 싱글에서 테스트했고 멀티는 테스트하지 않았습니다. 멀티에서는 서버와 모든 클라이언트에 ZombieBuddy와 이 모드가 필요합니다.
 description=
 description=Source: https://github.com/TalkingHand/CarryWeightMultiplier
+description=
+description=[url=https://ko-fi.com/talkinghands2285][img]https://raw.githubusercontent.com/TalkingHand/CarryWeightMultiplier/main/art/kofi_button.png[/img][/url]
 tags=Build 42;Balance;Items
 visibility=public
